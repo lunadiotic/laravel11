@@ -6,22 +6,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/movie', function () {
-//    return 'Hello, movie!';
+$movies = [];
 
-    $movies = [];
+for ($i = 0; $i < 10; $i++) {
+    $movies[] = [
+        'title' => "Movie {$i}",
+        'year' => 2000 + $i,
+        'genre' => 'Action',
+    ];
+}
 
-    for ($i = 0; $i < 10; $i++) {
-        $movies[] = [
-            'title' => 'The Matrix',
-            'year' => '1999',
-            'genre' => 'Action',
-        ];
+Route::get('/movie', function () use ($movies) {
+    echo '<h1>Movie</h1>';
+    echo '<ul>';
+
+    foreach ($movies as $movie) {
+        echo '<li>' . $movie['title'] . ' ' . $movie['year'] . ' ' . $movie['genre'] . '</li>';
     }
 
-    // return $movies;
+    echo '</ul>';
+});
 
-    // return movie with foreach and show it without view
+Route::post('/movie', function () use ($movies) {
+    $movies[] = [
+        'title' => request('title'),
+        'year' => request('year'),
+        'genre' => request('genre'),
+    ];
+
     echo '<h1>Movie</h1>';
     echo '<ul>';
 
