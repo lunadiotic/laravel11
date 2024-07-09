@@ -50,3 +50,33 @@ Route::post('/movie', function () use ($movies) {
 
     echo '</ul>';
 });
+
+Route::put('/movie/{id}', function ($id) use ($movies) {
+    $movies[$id] = [
+        'title' => request('title'),
+        'year' => request('year'),
+        'genre' => request('genre'),
+    ];
+
+    echo '<h1>Movie</h1>';
+    echo '<ul>';
+
+    foreach ($movies as $movie) {
+        echo '<li>' . $movie['title'] . ' ' . $movie['year'] . ' ' . $movie['genre'] . '</li>';
+    }
+
+    echo '</ul>';
+});
+
+Route::delete('/movie/{id}', function ($id) use ($movies) {
+    unset($movies[$id]);
+
+    echo '<h1>Movie</h1>';
+    echo '<ul>';
+
+    foreach ($movies as $movie) {
+        echo '<li>' . $movie['title'] . ' ' . $movie['year'] . ' ' . $movie['genre'] . '</li>';
+    }
+
+    echo '</ul>';
+});
