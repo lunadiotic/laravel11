@@ -21,3 +21,13 @@ Route::get('/foo', function () {
 Route::get('/bar', function () {
     return 'url(' . route('route-bar') . ')';
 })->name('route-bar');
+
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::get('/foo', function () {
+        return 'Hello, Admin!';
+    })->name('route-foo');
+
+    Route::get('/bar', function () {
+        return 'Hello, Admin!';
+    })->name('route-bar');
+});
