@@ -23,4 +23,9 @@ class MovieController extends Controller
     {
         return $this->movies;
     }
+
+    public function show($id)
+    {
+        return $this->movies[$id];
+    }
 }

@@ -21,9 +21,7 @@ Route::group(
 
         Route::get('/', [MovieController::class, 'index']);
 
-        Route::get('/{id}', function ($id) use ($movies) {
-            return $movies[$id];
-        })->middleware(['isMember']);
+        Route::get('/{id}', [MovieController::class, 'show'])->middleware(['isMember']);
 
 
         Route::post('/', function () use ($movies) {
