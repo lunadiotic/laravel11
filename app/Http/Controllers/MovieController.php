@@ -28,4 +28,15 @@ class MovieController extends Controller
     {
         return $this->movies[$id];
     }
+
+    public function store()
+    {
+        $this->movies[] = [
+            'title' => request('title'),
+            'year' => request('year'),
+            'genre' => request('genre'),
+        ];
+
+        return $this->movies;
+    }
 }

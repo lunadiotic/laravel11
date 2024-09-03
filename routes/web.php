@@ -20,19 +20,8 @@ Route::group(
     function () use ($movies) {
 
         Route::get('/', [MovieController::class, 'index']);
-
         Route::get('/{id}', [MovieController::class, 'show'])->middleware(['isMember']);
-
-
-        Route::post('/', function () use ($movies) {
-            $movies[] = [
-                'title' => request('title'),
-                'year' => request('year'),
-                'genre' => request('genre'),
-            ];
-
-            return $movies;
-        });
+        Route::post('/', [MovieController::class, 'store']);
 
         Route::put('/{id}', function ($id) use ($movies) {
             $movies[$id]['title'] = request('title');
