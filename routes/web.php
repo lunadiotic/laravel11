@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,3 +31,8 @@ Route::get('/pricing', function () {
 Route::get('/login', function () {
     return 'Login page';
 })->name('login');
+
+
+Route::get('/request',  function (Request $request) {
+    dd($request);
+});
