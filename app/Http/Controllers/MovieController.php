@@ -23,20 +23,28 @@ class MovieController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return [
-            'isAuth',
-            new Middleware('isMember', only: ['show']),
-        ];
+        // return [
+        //     'isAuth',
+        //     new Middleware('isMember', only: ['show']),
+        // ];
     }
 
     public function index()
     {
-        return $this->movies;
+        $movies = $this->movies;
+        // return view('movies.index', ['movies' => $movies]);
+        return view('movies.index', compact('movies'))->with([
+            'titlePage' => 'Movie List'
+        ]);
+        // return view('movies.index')->with([
+        //     'movies' => $movies
+        // ]);
     }
 
     public function show($id)
     {
-        return $this->movies[$id];
+        $movie = $this->movies[$id];
+        return view('movies.show', ['movie' => $movie]);
     }
 
     public function store()
