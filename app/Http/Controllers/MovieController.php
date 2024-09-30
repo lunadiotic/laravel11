@@ -19,7 +19,7 @@ class MovieController extends Controller implements HasMiddleware
                 'release_date' => '2023-07-21',
                 'cast' => ['Cillian Murphy', 'Emily Blunt', 'Matt Damon', 'Robert Downey Jr.', 'Florence Pugh'],
                 'genres' => ['Drama', 'History', 'Thriller'],
-                'image' => 'https://image.tmdb.org/t/p/w500/aCzRPvhbBWOdNfwN1gdXK46DMBM.jpg',
+                'image' => 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
             ],
             [
                 'title' => 'Barbie',
@@ -35,7 +35,7 @@ class MovieController extends Controller implements HasMiddleware
                 'release_date' => '2023-07-12',
                 'cast' => ['Tom Cruise', 'Hayley Atwell', 'Ving Rhames', 'Simon Pegg', 'Rebecca Ferguson'],
                 'genres' => ['Action', 'Adventure', 'Thriller'],
-                'image' => 'https://image.tmdb.org/t/p/w500/yF1eOkaYvwiORauRCPWznV9xVvi.jpg',
+                'image' => 'https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
             ],
             [
                 'title' => 'Spider-Man: Across the Spider-Verse',
@@ -83,7 +83,7 @@ class MovieController extends Controller implements HasMiddleware
                 'release_date' => '2023-06-30',
                 'cast' => ['Harrison Ford', 'Phoebe Waller-Bridge', 'Mads Mikkelsen', 'Boyd Holbrook', 'Antonio Banderas'],
                 'genres' => ['Adventure', 'Action'],
-                'image' => 'https://image.tmdb.org/t/p/w500/AmY0GgtO5bqGhcdGff0RtYn3S3U.jpg',
+                'image' => 'https://image.tmdb.org/t/p/w500/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg',
             ],
             [
                 'title' => 'Transformers: Rise of the Beasts',
