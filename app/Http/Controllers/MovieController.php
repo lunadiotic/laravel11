@@ -107,13 +107,9 @@ class MovieController extends Controller implements HasMiddleware
     public function index()
     {
         $movies = $this->movies;
-        // return view('movies.index', ['movies' => $movies]);
         return view('movies.index', compact('movies'))->with([
             'titlePage' => 'Movie List'
         ]);
-        // return view('movies.index')->with([
-        //     'movies' => $movies
-        // ]);
     }
 
     public function show($id)
@@ -122,15 +118,23 @@ class MovieController extends Controller implements HasMiddleware
         return view('movies.show', ['movie' => $movie]);
     }
 
-    public function store()
+    public function create()
     {
-        $this->movies[] = [
-            'title' => request('title'),
-            'year' => request('year'),
-            'genre' => request('genre'),
-        ];
+        return view('movies.create');
+    }
 
-        return $this->movies;
+    public function store(Request $request)
+    {
+        $newMovie = [
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'release_date' => $request['release_date'],
+            'cast' => explode(',', $request['cast']),
+            'genres' => explode(',', $request['genres']),
+            'image' => $request['image'],
+        ];
+        $this->movies[] = $newMovie;
+        return $this->index();
     }
 
     public function update($id)
