@@ -32,8 +32,8 @@ Route::group(
         'as' => 'movie.'
     ],
     function () {
-        Route::get('/', [MovieController::class, 'index']);
-        Route::get('/{id}', [MovieController::class, 'show']);
+        Route::get('/', [MovieController::class, 'index'])->name('index');
+        Route::get('/{id}', [MovieController::class, 'show'])->name('show');
         Route::post('/', [MovieController::class, 'store']);
         Route::put('/{id}', [MovieController::class, 'update']);
         Route::patch('/{id}', [MovieController::class, 'update']);
