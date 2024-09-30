@@ -9,7 +9,21 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    $movies = [
+        ['title' => 'The Matrix', 'year' => 1999],
+        ['title' => 'Inception', 'year' => 2010],
+        ['title' => 'Interstellar', 'year' => 2014],
+        ['title' => 'The Dark Knight', 'year' => 2008],
+        ['title' => 'Pulp Fiction', 'year' => 1994],
+        ['title' => 'Avengers: Endgame', 'year' => 2019],
+        ['title' => 'The Shawshank Redemption', 'year' => 1994],
+        ['title' => 'Parasite', 'year' => 2019],
+        ['title' => 'The Godfather', 'year' => 1972],
+        ['title' => 'Spider-Man: Into the Spider-Verse', 'year' => 2018],
+    ];
+
+
+    return view('home', compact('movies'));
 });
 
 Route::group(
