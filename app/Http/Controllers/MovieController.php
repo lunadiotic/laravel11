@@ -115,7 +115,7 @@ class MovieController extends Controller implements HasMiddleware
     public function show($id)
     {
         $movie = $this->movies[$id];
-        return view('movies.show', ['movie' => $movie]);
+        return view('movies.show', ['movie' => $movie, 'movieId' => $id]);
     }
 
     public function create()
@@ -137,13 +137,25 @@ class MovieController extends Controller implements HasMiddleware
         return $this->index();
     }
 
-    public function update($id)
+    public function edit($id)
     {
-        $this->movies[$id]['title'] = request('title');
-        $this->movies[$id]['year'] = request('year');
-        $this->movies[$id]['genre'] = request('genre');
+        $movie = $this->movies[$id];
+        $movie['cast'] = implode(',', $movie['cast']);
+        $movie['genres'] = implode(',', $movie['genres']);
+        return view('movies.edit', ['movie' => $movie, 'movieId' => $id]);
+    }
 
-        return $this->movies;
+    public function update(Request $request, $id)
+    {
+        $this->movies[$id]['title'] = $request['title'];
+        $this->movies[$id]['description'] = $request['description'];
+        $this->movies[$id]['release_date'] = $request['release_date'];
+        $this->movies[$id]['cast'] = explode(',', $request['cast']);
+        $this->movies[$id]['genres'] = explode(',', $request['genres']);
+        $this->movies[$id]['image'] = $request['image'];
+
+        // return $this->index();
+        return $this->show($id);
     }
 
     public function destroy($id)
