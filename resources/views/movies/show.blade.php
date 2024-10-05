@@ -33,9 +33,15 @@
                 <a href="{{ route('movie.edit', $movieId) }}" class="bg-green-600 p-1 rounded hover:bg-green-500">
                     ✏️
                 </a>
-                <button class="bg-red-600 p-1 rounded hover:bg-red-500">
+                <form id="logout-form" action="{{ route('movie.destroy', $movieId) }}" method="POST"
+                    style="display: none;">
+                    @csrf @method('DELETE')
+                </form>
+                <a href="{{ route('movie.destroy', $movieId) }}"
+                    onclick="event.preventDefault(); alert('Are you sure?'); document.getElementById('logout-form').submit();"
+                    class="bg-red-600 p-1 rounded hover:bg-red-500">
                     🗑️
-                </button>
+                </a>
             </div>
         </div>
     </div>

@@ -38,8 +38,8 @@ Route::group(
         Route::post('/', [MovieController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [MovieController::class, 'edit'])->name('edit');
         Route::put('/{id}', [MovieController::class, 'update'])->name('update');
-        Route::patch('/{id}', [MovieController::class, 'update']);
-        Route::delete('/{id}', [MovieController::class, 'destroy']);
+        // Route::patch('/{id}', [MovieController::class, 'update']);
+        Route::delete('/{id}', [MovieController::class, 'destroy'])->name('destroy');
     }
 );
 

@@ -161,6 +161,7 @@ class MovieController extends Controller implements HasMiddleware
     public function destroy($id)
     {
         unset($this->movies[$id]);
-        return $this->movies;
+
+        return $this->index();
     }
 }
