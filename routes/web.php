@@ -5,25 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 Route::get('/home', function () {
-    $movies = [
-        ['title' => 'The Matrix', 'year' => 1999],
-        ['title' => 'Inception', 'year' => 2010],
-        ['title' => 'Interstellar', 'year' => 2014],
-        ['title' => 'The Dark Knight', 'year' => 2008],
-        ['title' => 'Pulp Fiction', 'year' => 1994],
-        ['title' => 'Avengers: Endgame', 'year' => 2019],
-        ['title' => 'The Shawshank Redemption', 'year' => 1994],
-        ['title' => 'Parasite', 'year' => 2019],
-        ['title' => 'The Godfather', 'year' => 1972],
-        ['title' => 'Spider-Man: Into the Spider-Verse', 'year' => 2018],
-    ];
-
-
-    return view('home', compact('movies'));
+    return view('home');
 });
 
 Route::group(
@@ -32,8 +18,8 @@ Route::group(
         'as' => 'movie.'
     ],
     function () {
-        Route::get('/', [MovieController::class, 'index']);
-        Route::get('/{id}', [MovieController::class, 'show']);
+        Route::get('/', [MovieController::class, 'index'])->name('index'); //route('movie.index');
+        Route::get('/{id}', [MovieController::class, 'show'])->name('show');
         Route::post('/', [MovieController::class, 'store']);
         Route::put('/{id}', [MovieController::class, 'update']);
         Route::patch('/{id}', [MovieController::class, 'update']);
