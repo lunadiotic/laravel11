@@ -9,11 +9,17 @@
 </head>
 
 <body class="bg-gray-900 text-white">
-    @include('_partials._header')
+    <x-partials.header></x-partials.header>
 
-    <section class="container mx-auto p-5">
-        @yield('content')
-    </section>
+    <div class="min-h-screen flex">
+        <asside class="w-64 bg-gray-800 p-6 text-white">
+            {{ $sidebar }}
+        </asside>
+
+        <main class="flex-1 p-6 bg-gray-900">
+            {{ $main }}
+        </main>
+    </div>
 </body>
 
 </html>

@@ -133,7 +133,9 @@ class MovieController extends Controller implements HasMiddleware
             'genres' => explode(',', $request['genres']),
             'image' => $request['image'],
         ];
+
         $this->movies[] = $newMovie;
+
         return $this->index();
     }
 
@@ -154,14 +156,13 @@ class MovieController extends Controller implements HasMiddleware
         $this->movies[$id]['genres'] = explode(',', $request['genres']);
         $this->movies[$id]['image'] = $request['image'];
 
-        // return $this->index();
+        // return $this->movies;
         return $this->show($id);
     }
 
     public function destroy($id)
     {
         unset($this->movies[$id]);
-
         return $this->index();
     }
 }
