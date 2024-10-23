@@ -19,11 +19,13 @@ Route::group(
     ],
     function () {
         Route::get('/', [MovieController::class, 'index'])->name('index'); //route('movie.index');
+        Route::get('/create', [MovieController::class, 'create'])->name('create');
         Route::get('/{id}', [MovieController::class, 'show'])->name('show');
-        Route::post('/', [MovieController::class, 'store']);
-        Route::put('/{id}', [MovieController::class, 'update']);
-        Route::patch('/{id}', [MovieController::class, 'update']);
-        Route::delete('/{id}', [MovieController::class, 'destroy']);
+        Route::post('/', [MovieController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [MovieController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [MovieController::class, 'update'])->name('update');
+        // Route::patch('/{id}', [MovieController::class, 'update']);
+        Route::delete('/{id}', [MovieController::class, 'destroy'])->name('destroy');
     }
 );
 

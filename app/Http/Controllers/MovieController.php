@@ -119,32 +119,54 @@ class MovieController extends Controller implements HasMiddleware
     public function show($id)
     {
         $movie = $this->movies[$id];
-        return view('movies.show', ['movie' => $movie]);
+        return view('movies.show', ['movie' => $movie, 'movieId' => $id]);
     }
 
-    public function store()
+    public function create()
     {
-        $this->movies[] = [
-            'title' => request('title'),
-            'year' => request('year'),
-            'genre' => request('genre'),
+        return view('movies.create');
+    }
+
+    public function store(Request $request)
+    {
+        $newMovie = [
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'release_date' => $request['release_date'],
+            'cast' => explode(',', $request['cast']),
+            'genres' => explode(',', $request['genres']),
+            'image' => $request['image'],
         ];
 
-        return $this->movies;
+        $this->movies[] = $newMovie;
+
+        return $this->index();
     }
 
-    public function update($id)
+    public function edit($id)
     {
-        $this->movies[$id]['title'] = request('title');
-        $this->movies[$id]['year'] = request('year');
-        $this->movies[$id]['genre'] = request('genre');
+        $movie = $this->movies[$id];
+        $movie['cast'] = implode(',', $movie['cast']);
+        $movie['genres'] = implode(',', $movie['genres']);
+        return view('movies.edit', ['movie' => $movie, 'movieId' => $id]);
+    }
 
-        return $this->movies;
+    public function update(Request $request, $id)
+    {
+        $this->movies[$id]['title'] = $request['title'];
+        $this->movies[$id]['description'] = $request['description'];
+        $this->movies[$id]['release_date'] = $request['release_date'];
+        $this->movies[$id]['cast'] = explode(',', $request['cast']);
+        $this->movies[$id]['genres'] = explode(',', $request['genres']);
+        $this->movies[$id]['image'] = $request['image'];
+
+        // return $this->movies;
+        return $this->show($id);
     }
 
     public function destroy($id)
     {
         unset($this->movies[$id]);
-        return $this->movies;
+        return $this->index();
     }
 }
