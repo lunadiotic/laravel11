@@ -124,3 +124,12 @@ Route::get('/login', function () {
 Route::get('/request',  function (Request $request) {
     dd($request);
 });
+
+Route::get('/session', function (Request $request) {
+    // session(['days' => ['Friday', 'Saturday', 'Sunday']]);
+    // session()->push('days', 'Monday');
+    // session()->put('days', array_diff(session('days'), ['Monday']));
+    // session()->put('is_membership', true);
+    session()->forget('is_membership');
+    return $request->session()->all();
+});
