@@ -149,3 +149,7 @@ Route::put('user/profile', [UserController::class, 'updateProfile']);
 Route::delete('user/profile', [UserController::class, 'deleteProfile']);
 
 Route::get('rating', [RatingController::class, 'index']);
+
+Route::get('attach-category', [MovieController::class, 'attachCategory']);
+Route::get('detach-category', [MovieController::class, 'detachCategory']);
+Route::get('sync-category', [MovieController::class, 'syncCategory']);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMovieRequest;
+use App\Models\Category;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -165,5 +167,38 @@ class MovieController extends Controller implements HasMiddleware
     {
         unset($this->movies[$id]);
         return $this->index();
+    }
+
+    public function attachCategory()
+    {
+        $movie = Movie::find(1);
+        // $movie->categories()->attach([1, 2]);
+
+        $category = Category::find(3);
+        $category->movies()->attach([1]);
+
+        return $movie->with('categories')->first();
+    }
+
+    public function detachCategory()
+    {
+        $movie = Movie::find(1);
+        // $movie->categories()->detach();
+
+        $category = Category::find(3);
+        $category->movies()->detach([1]);
+
+        return $movie->with('categories')->first();
+    }
+
+    public function syncCategory()
+    {
+        $movie = Movie::find(1);
+        $movie->categories()->sync([1, 4, 5]);
+
+        // $category = Category::find(3);
+        // $category->movies()->sync([1]);
+
+        return $movie->with('categories')->first();
     }
 }
