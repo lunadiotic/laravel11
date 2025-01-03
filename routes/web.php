@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RatingController;
@@ -153,3 +154,7 @@ Route::get('rating', [RatingController::class, 'index']);
 Route::get('attach-category', [MovieController::class, 'attachCategory']);
 Route::get('detach-category', [MovieController::class, 'detachCategory']);
 Route::get('sync-category', [MovieController::class, 'syncCategory']);
+
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+Route::post('register', [AuthController::class, 'register'])->name('register.store');
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.form');
